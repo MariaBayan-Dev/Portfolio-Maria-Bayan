@@ -97,6 +97,34 @@ document.addEventListener('click', (e) =>{
 })
 
 
+//REDIRECCIÓN THANKS
+
+const contactForm = document.querySelector('.contact-form')
+
+contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault() //Se evita el envío
+
+    const formData = new FormData(contactForm)
+
+    try{
+        const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+
+        if (response.ok){
+            //Si el envío tiene éxito, lo redirijo
+            window.location.href = '/thanks.html'
+        }
+    }catch (error){
+        console.error('Error al enviar el formulario', error)
+    }
+})
+
+
 //SCROLL REVEAL LIBRERIA
 
 ScrollReveal({ 
